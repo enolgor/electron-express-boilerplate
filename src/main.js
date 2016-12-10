@@ -1,5 +1,11 @@
 'use strict';
 
+const express = require('express');
+
+const backend = require('./backend');
+
+const port = backend();
+
 const electron = require('electron');
 
 const dev = process.argv.indexOf('dev')!==-1;
@@ -18,7 +24,7 @@ function createWindow () {
   mainWindow = new BrowserWindow({width: 800, height: 600});
 
   // and load the index.html of the app.
-  mainWindow.loadURL('file://' + __dirname + '/app' + '/index.html');
+  mainWindow.loadURL('http://localhost:'+port);
 
   // Open the DevTools.
 
@@ -31,7 +37,6 @@ function createWindow () {
     // when you should delete the corresponding element.
     mainWindow = null;
   });
-  if(dev) require('electron-connect').client.create(mainWindow);
 }
 
 // This method will be called when Electron has finished
