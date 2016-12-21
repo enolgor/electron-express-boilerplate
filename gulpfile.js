@@ -39,3 +39,5 @@ gulp.task('package', cb=>{
 gulp.task('release', cb=>{
   runSequence('dist', 'package', cb);
 });
+
+require('./tasks/util.js')(data);
